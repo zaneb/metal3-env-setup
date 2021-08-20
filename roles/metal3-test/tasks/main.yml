@@ -1,0 +1,14 @@
+- name: Setup passwordless sudo
+  copy:
+      dest: /etc/sudoers.d/passwordless
+      content: "%wheel ALL=(ALL:ALL) NOPASSWD:ALL"
+      mode: 0440
+  become: yes
+- import_tasks: rpm.yml
+- name: Use local path
+  blockinfile:
+      path: .bashrc
+      validate: bash -e %s
+      marker: "# {mark} LOCAL PATH BLOCK"
+      block: |
+        export PATH=$PATH:~/.local/bin

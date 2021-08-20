@@ -1,0 +1,2 @@
+dev_scripts_path: openshift-metal3/dev-scripts
+test_cluster_name: ostest

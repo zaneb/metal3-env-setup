@@ -1,0 +1,7 @@
+.*.swp
+.*.swo
+*~
+*.rej
+*.orig
+.cscope
+.stgitmail.txt

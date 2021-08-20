@@ -1,0 +1,6 @@
+- hosts: metal3_test
+  gather_facts: no
+  tasks:
+      - import_role:
+          name: openshift-dev
+          tasks_from: bounce

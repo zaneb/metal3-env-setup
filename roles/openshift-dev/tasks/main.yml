@@ -1,0 +1,44 @@
+- import_tasks: openshift-metal3-dev-scripts.yml
+- name: Check for existing kubeconfig
+  stat:
+      path: "{{kubeconfig_path}}"
+  register: kubeconfig
+- import_tasks: create.yml
+  when: not kubeconfig.stat.exists
+- name: Setup oc aliases
+  blockinfile:
+      path: .bashrc
+      validate: bash -e %s
+      marker: "# {mark} OPENSHIFT ALIAS BLOCK"
+      block: |
+        alias oc='oc --kubeconfig ~/{{kubeconfig_path}}'
+
+        bmo() {
+            oc get pods --namespace openshift-machine-api -o name | sed -n -e 's#^pod/##' -e '/^metal3-/ p'
+        }
+
+        bmo-log() {
+            oc logs --namespace openshift-machine-api $(bmo) -c metal3-baremetal-operator | bmo-log-parse $*
+        }
+        bmo-log-tail() {
+            oc logs --follow --since=30s --namespace openshift-machine-api $(bmo) -c metal3-baremetal-operator | bmo-log-parse $*
+        }
+
+        export OS_AUTH_TYPE=none
+
+        alias host_ironic='openstack --os-endpoint="http://172.22.0.1:6385" baremetal'
+        alias host_inspector='openstack --os-endpoint="http://172.22.0.1:5050" baremetal introspection'
+
+        ironic_endpoint() {
+            oc get --namespace openshift-machine-api configmap ironic-bmo-configmap -o jsonpath='{.data.ironic_endpoint}'
+        }
+        inspector_endpoint() {
+            oc get --namespace openshift-machine-api configmap ironic-bmo-configmap -o jsonpath='{.data.ironic_inspector_endpoint}'
+        }
+
+        ironic() {
+        openstack --os-endpoint="$(ironic_endpoint)" baremetal $*
+        }
+        inspector() {
+        openstack --os-endpoint="$(inspector_endpoint)" baremetal introspection $*
+        }

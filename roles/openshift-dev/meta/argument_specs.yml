@@ -1,0 +1,8 @@
+argument_specs:
+  main:
+    short_description: Set up the openshift dev-scripts cluster
+    author: Zane Bitter
+
+  bounce:
+    short_description: Bounce the openshift dev-scripts cluster
+    author: Zane Bitter

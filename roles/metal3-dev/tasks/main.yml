@@ -1,0 +1,17 @@
+- import_tasks: metal3-dev-env.yml
+
+- name: Check for existing clusterctl
+  stat:
+      path: ".cluster-api/clusterctl.yaml"
+  register: clusterctl
+
+- import_tasks: create.yml
+  when: not clusterctl.stat.exists
+
+- name: Setup kc aliases
+  blockinfile:
+      path: .bashrc
+      validate: bash -e %s
+      marker: "# {mark} KUBECTL ALIAS BLOCK"
+      block: |
+        alias kc='kubectl -n metal3'

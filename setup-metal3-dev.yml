@@ -1,0 +1,5 @@
+- hosts: metal3_test
+  roles:
+    - zb
+    - metal3-dev
+  gather_facts: no

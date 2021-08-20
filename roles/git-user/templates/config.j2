@@ -1,0 +1,16 @@
+[user]
+        name = {{ lookup('gitconfig', 'user', 'name') }}
+        email = {{ lookup('gitconfig', 'user', 'email') }}
+[color]
+        diff = auto
+        status = auto
+        interactive = auto
+        branch = auto
+[diff]
+        noprefix = true
+[push]
+        default = tracking
+[pull]
+        rebase = true
+[core]
+        pager = less -x1,5

@@ -1,0 +1,24 @@
+- name: Copy pull secrets
+  copy:
+      dest: "{{dev_scripts_path}}/pull_secret.json"
+      src: pull-secrets.json
+- name: Get username
+  command: whoami
+  changed_when: false
+  become: no
+  register: whoami
+- name: Configure dev-scripts
+  copy:
+      dest: "{{dev_scripts_path}}/config_{{whoami.stdout}}.sh"
+      src: config.sh
+  register: dev_scripts_config
+- name: Set CI token
+  blockinfile:
+      path: "{{dev_scripts_config.dest}}"
+      marker: "# {mark} CI TOKEN BLOCK"
+      validate: bash -e %s
+      block: |
+          # Set the CI token in the file "ci_token"
+          set +x
+          export CI_TOKEN='{{ lookup('file', 'ci_token') }}'
+          set -x

@@ -1,0 +1,5 @@
+- hosts: metal3_test
+  roles:
+    - zb
+    - openshift-dev
+  gather_facts: no

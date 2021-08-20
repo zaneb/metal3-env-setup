@@ -1,0 +1,21 @@
+- name: Get username
+  command: whoami
+  changed_when: false
+  become: no
+  register: whoami
+- name: Install SSH key
+  authorized_key:
+      user: "{{whoami.stdout}}"
+      key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+- name: Install inputrc
+  copy:
+      dest: .inputrc
+      content: |
+        "\e[A":history-search-backward
+        "\e[B":history-search-forward
+- name: Set up for git user
+  import_role:
+    name: git-user
+- name: Set up for vim user
+  import_role:
+    name: vim-user

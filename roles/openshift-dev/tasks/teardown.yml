@@ -1,0 +1,8 @@
+- name: Check for dev_scripts_path
+  fail:
+    msg: dev_scripts_path must be defined
+  when: dev_scripts_path is undefined
+- name: Stop OpenShift
+  make:
+      chdir: "{{dev_scripts_path}}"
+      target: clean

@@ -1,0 +1,20 @@
+- name: Get username
+  command: whoami
+  changed_when: false
+  become: no
+  register: whoami
+- name: Check for existing config
+  stat:
+      path: "{{dev_env_path}}/config_{{whoami.stdout}}.sh"
+  register: dev_env_config_file
+- name: Copy example dev-env config file
+  copy:
+      dest: "{{dev_env_path}}/config_{{whoami.stdout}}.sh"
+      src: "{{dev_env_path}}/config_example.sh"
+      remote_src: yes
+  when: not dev_env_config_file.stat.exists
+- name: Create dev-env config file
+  ansible.posix.patch:
+      src: dev-env-config.patch
+      path: "{{dev_env_path}}/config_{{whoami.stdout}}.sh"
+  when: not dev_env_config_file.stat.exists

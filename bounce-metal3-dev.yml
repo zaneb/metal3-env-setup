@@ -1,0 +1,6 @@
+- hosts: metal3_test
+  gather_facts: no
+  tasks:
+      - import_role:
+          name: metal3-dev
+          tasks_from: bounce

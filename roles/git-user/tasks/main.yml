@@ -1,0 +1,22 @@
+- name: Install git
+  dnf:
+      name: git
+      state: present
+  become: yes
+- name: Setup git config directory
+  file:
+      path: .config/git
+      state: directory
+  register: configgit
+- name: Install gitignore
+  copy:
+      dest: "{{configgit.path}}/ignore"
+      src: ignore
+- name: Install gitattributes
+  copy:
+      dest: "{{configgit.path}}/attributes"
+      src: attributes
+- name: Install gitconfig
+  template:
+      dest: .gitconfig
+      src: config.j2

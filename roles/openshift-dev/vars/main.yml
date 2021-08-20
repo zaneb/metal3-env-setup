@@ -1,0 +1,1 @@
+kubeconfig_path: "{{dev_scripts_path}}/ocp/{{test_cluster_name}}/auth/kubeconfig"

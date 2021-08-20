@@ -1,0 +1,14 @@
+- import_tasks: check_vars.yml
+- name: ssh configuration
+  copy:
+      dest: .ssh/config
+      content: |
+          Host 192.168.111.*
+          StrictHostKeyChecking=no
+          UserKnownHostsFile=/dev/null
+- name: Checkout openshift-metal3 dev-scripts
+  git:
+      dest: "{{dev_scripts_path}}"
+      repo: https://github.com/openshift-metal3/dev-scripts
+      update: no
+- import_tasks: config.yml

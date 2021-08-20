@@ -1,0 +1,10 @@
+- name: Check for dev_env_path
+  fail:
+    msg: dev_env_path must be defined
+  when: dev_env_path is undefined
+- name: Checkout Metal³ dev-env
+  git:
+      dest: "{{dev_env_path}}"
+      repo: https://github.com/metal3-io/metal3-dev-env
+      update: no
+- import_tasks: config.yml

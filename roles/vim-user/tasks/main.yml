@@ -1,0 +1,14 @@
+- name: Install vimrc
+  copy:
+      dest: .vimrc
+      src: ~/.vimrc
+- name: Install vimfiles
+  synchronize:
+      dest: .vim
+      src: ~/.vim
+- name: Set default editor to vim
+  blockinfile:
+    path: .bashrc
+    validate: bash -e %s
+    marker: "# {mark} EDITOR BLOCK"
+    block: export EDITOR=vim

@@ -1,0 +1,18 @@
+--- a/config_zbitter.sh	2020-06-09 12:55:19.185632258 -0400
++++ b/config_zbitter.sh	2020-06-10 16:59:43.326509530 -0400
+@@ -41,6 +41,7 @@
+ # Set the Baremetal Operator repository to clone
+ #
+ #export BMOREPO="${BMOREPO:-https://github.com/metal3-io/baremetal-operator.git}"
++export BMOREPO="${BMOREPO:-https://github.com/zaneb/baremetal-operator.git}"
+ 
+ #
+ # Set the Baremetal Operator branch to checkout
+@@ -89,6 +90,7 @@
+ # Number of maximum verification or test retries
+ #
+ #export TEST_MAX_TIME=120
++export TEST_MAX_TIME=30
+ 
+ #
+ # Set the driver. The default value is 'ipmi'

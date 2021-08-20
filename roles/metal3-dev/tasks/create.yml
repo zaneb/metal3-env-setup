@@ -1,0 +1,7 @@
+- name: Check for dev_env_path
+  fail:
+    msg: dev_env_path must be defined
+  when: dev_env_path is undefined
+- name: Start Minikube
+  make:
+      chdir: "{{dev_env_path}}"

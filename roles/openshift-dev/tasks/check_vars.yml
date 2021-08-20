@@ -1,0 +1,8 @@
+- name: Check for dev_scripts_path
+  fail:
+    msg: dev_scripts_path must be defined
+  when: dev_scripts_path is undefined
+- name: Check for kubeconfig_path
+  fail:
+    msg: kubeconfig_path must be defined
+  when: kubeconfig_path is undefined
