@@ -27,6 +27,14 @@ set up the host and run dev-scripts:
 ansible-playbook setup-openshift.yml
 ```
 
+Once the cluster is up, to tear it down and recreate it with updated config
+(from the file `roles/openshift-dev/files/config.sh`), run the following
+command:
+
+```
+ansible-playbook bounce-openshift.yml
+```
+
 ### Authentication
 
 To run the OpenShift dev-scripts, two additional files are needed:
@@ -59,6 +67,15 @@ console](https://console-openshift-console.apps.ci.l2s4.p1.openshiftapps.com/).
     }
 }
 ```
+
+### Helpful aliases
+
+The following commands/aliases are installed automatically:
+
+* `oc`: aliased to always use the correct kubeconfig file
+* `bmo`: get the name of the current metal3 Pod
+* `bmo-log`: display the BMO log
+* `bmo-log-tail`: follow the BMO log live
 
 ## Running the Metal³ dev-env
 
