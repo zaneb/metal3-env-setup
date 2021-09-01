@@ -1,6 +1,11 @@
 - import_tasks: check_vars.yml
+- name: Trigger set project
+  assert:
+      that: true
+      quiet: true
+  changed_when: true
+  notify:
+      - Set OCP project
 - name: Start OpenShift
   make:
       chdir: "{{dev_scripts_path}}"
-- name: Set OCP project
-  command: oc --kubeconfig="{{kubeconfig_path}}" project openshift-machine-api

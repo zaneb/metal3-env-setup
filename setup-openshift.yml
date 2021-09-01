@@ -3,3 +3,4 @@
     - zb
     - openshift-dev
   gather_facts: no
+  force_handlers: yes
