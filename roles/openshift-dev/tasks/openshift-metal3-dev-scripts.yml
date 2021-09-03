@@ -6,6 +6,7 @@
           Host 192.168.111.*
           StrictHostKeyChecking=no
           UserKnownHostsFile=/dev/null
+      mode: '644'
 - name: Checkout openshift-metal3 dev-scripts
   git:
       dest: "{{dev_scripts_path}}"
