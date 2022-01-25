@@ -68,6 +68,18 @@ console](https://console-openshift-console.apps.ci.l2s4.p1.openshiftapps.com/).
 }
 ```
 
+### Cluster-bot builds
+
+The playbooks can be configured to use a release image from the cluster-bot
+Slack bot (which can contain patches from multiple unmerged PRs). This
+requires a token from the [cluster-bot CI
+console](https://console.build01.ci.openshift.org/) in the file
+`roles/openshift-dev/files/clusterbot-ci_token`.
+
+To use the cluster-bot build in the namespace
+`https://console.build01.ci.openshift.org/k8s/cluster/projects/ci-ln-<build-id>`,
+pass the argument `-e clusterbot_build_id=<build-id>` to `ansible-playbook`.
+
 ### Helpful aliases
 
 The following commands/aliases are installed automatically:

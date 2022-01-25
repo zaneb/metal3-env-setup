@@ -1,17 +1,13 @@
 #!/bin/bash
 
 # You can get this token from https://console-openshift-console.apps.ci.l2s4.p1.openshiftapps.com/ by
-# clicking on your name in the top right corner and coping the login
+# clicking on your name in the top right corner and copying the login
 # command (the token is part of the command)
 # BEGIN CI TOKEN BLOCK
 set +x
 export CI_TOKEN=''
 set -x
 # END CI TOKEN BLOCK
-
-# When testing e.g cluster-bot builds, you must change CI_TOKEN to one
-# from a different cluster, in which case this should be updated
-#export CI_SERVER=api.ci.l2s4.p1.openshiftapps.com
 
 # Select a different release stream from which to pull the latest image, if the
 # image name is not specified
@@ -21,6 +17,13 @@ set -x
 # e.g ci, nightly or ga
 # if using ga then set OPENSHIFT_VERSION to the required version.
 #export OPENSHIFT_RELEASE_TYPE=nightly
+
+# Test using a cluster-bot build
+# You can get the token from https://console.build01.ci.openshift.org/ by
+# clicking on your name in the top right corner and copying the login
+# command (the token is part of the command)
+# BEGIN CLUSTERBOT OVERRIDE BLOCK
+# END CLUSTERBOT OVERRIDE BLOCK
 
 # Use <NAME>_LOCAL_IMAGE to build or use copy of container images locally e.g.
 #export IRONIC_LOCAL_IMAGE=https://github.com/metal3-io/ironic

@@ -22,3 +22,23 @@
           set +x
           export CI_TOKEN='{{ lookup('file', 'ci_token') }}'
           set -x
+- name: Clear cluster-bot override
+  blockinfile:
+      path: "{{dev_scripts_config.dest}}"
+      marker: "# {mark} CLUSTERBOT OVERRIDE BLOCK"
+      validate: bash -e %s
+      block: ""
+  when: clusterbot_build_id == ""
+- name: Set cluster-bot override
+  blockinfile:
+      path: "{{dev_scripts_config.dest}}"
+      marker: "# {mark} CLUSTERBOT OVERRIDE BLOCK"
+      validate: bash -e %s
+      block: |
+          # Set the CI token in the file "clusterbot-ci_token"
+          set +x
+          export CI_TOKEN='{{ lookup('file', 'clusterbot-ci_token') }}'
+          set -x
+          export CI_SERVER="api.build01.ci.devcluster.openshift.com"
+          export OPENSHIFT_RELEASE_IMAGE="registry.build01.ci.openshift.org/ci-ln-{{clusterbot_build_id}}/release:latest"
+  when: clusterbot_build_id != ""
