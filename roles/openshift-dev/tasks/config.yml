@@ -10,7 +10,7 @@
 - name: Configure dev-scripts
   copy:
       dest: "{{dev_scripts_path}}/config_{{whoami.stdout}}.sh"
-      src: config.sh
+      src: "{{config_file[method]}}"
   register: dev_scripts_config
 - name: Set CI token
   blockinfile:

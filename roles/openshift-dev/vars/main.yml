@@ -1,1 +1,7 @@
 kubeconfig_path: "{{dev_scripts_path}}/ocp/{{test_cluster_name}}/auth/kubeconfig"
+config_file:
+  ipi: config.sh
+  agent: agent-config.sh
+make_target:
+  ipi: ""
+  agent: "agent"

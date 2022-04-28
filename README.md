@@ -35,6 +35,14 @@ command:
 ansible-playbook bounce-openshift.yml
 ```
 
+### Installation method
+
+To change the installation method, pass e.g. `-e method=agent`. The available
+methods are `agent` and `ipi`. The default is `ipi`.
+
+For the `agent` method, the config file used is
+`roles/openshift-dev/files/config.sh`.
+
 ### Authentication
 
 To run the OpenShift dev-scripts, two additional files are needed:
