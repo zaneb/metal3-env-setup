@@ -1,4 +1,12 @@
 - import_tasks: check_vars.yml
+- name: Allow qemu read access
+  ansible.posix.acl:
+      path: "."
+      entity: qemu
+      etype: user
+      permissions: rx
+      state: present
+  when: method == "agent"
 - name: Trigger set project
   assert:
       that: true
