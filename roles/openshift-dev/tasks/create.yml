@@ -12,7 +12,6 @@
       that: true
       quiet: true
   changed_when: true
-  when: method != "agent"
   notify:
       - Set OCP project
 - name: Start OpenShift
