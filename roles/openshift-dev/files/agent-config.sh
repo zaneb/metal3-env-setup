@@ -25,34 +25,20 @@ set -x
 # BEGIN CLUSTERBOT OVERRIDE BLOCK
 # END CLUSTERBOT OVERRIDE BLOCK
 
-# IP stack for the cluster.  The default is "v6".  You may also set "v4", or
-# "v4v6" for dual stack.
-export IP_STACK=v4
-
-# Network type
-export NETWORK_TYPE="OpenShiftSDN"
-
-# Indicate number of masters to deploy
-#export NUM_MASTERS=3
-
-# Indicate number of workers to deploy
-export NUM_WORKERS=0
+# Set a single config variable AGENT_E2E_TEST_SCENARIO to create a cluster for the different scenarios
+# i.e. Single Node Openshift(SNO), Highly Available (HA) or Compact cluster.
+# The only supported values for AGENT_E2E_TEST_SCENARIO are COMPACT_IPV4, COMPACT_IPV6, HA_IPV4, HA_IPV6, SNO_IPV4 and SNO_IPV6.
+# When set, the code internally sets other low level details such as disk size, memory, number of masters and workers,
+# cpu and ip stack.
+export AGENT_E2E_TEST_SCENARIO=HA_IPV4
 
 # Change VM resources for masters
 export MASTER_MEMORY=16384
 export MASTER_DISK=120
 
 # Change VM resources for workers
-export WORKER_MEMORY=16384
+export WORKER_MEMORY=8192
 export WORKER_DISK=120
 
-# To use a local checkout of the fleeting repo, instead of fetching the remote
-# main branch
-#export FLEETING_PATH=~/go/src/github.com/openshift-agent-team/fleeting
-
-# When set, the changes associated to the specified pull request (for the fleeting repo)
-# are fetched, instead of using the main branch
-#export FLEETING_PR=12
-
 # Set whether static IPs will be used for all nodes or only Node0
-#export FLEETING_STATIC_IP_NODE0_ONLY="true"
+#export AGENT_STATIC_IP_NODE0_ONLY="true"
