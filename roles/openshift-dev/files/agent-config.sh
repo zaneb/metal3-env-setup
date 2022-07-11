@@ -32,13 +32,5 @@ set -x
 # cpu and ip stack.
 export AGENT_E2E_TEST_SCENARIO=HA_IPV4
 
-# Change VM resources for masters
-export MASTER_MEMORY=16384
-export MASTER_DISK=120
-
-# Change VM resources for workers
-export WORKER_MEMORY=8192
-export WORKER_DISK=120
-
 # Set whether static IPs will be used for all nodes or only Node0
 #export AGENT_STATIC_IP_NODE0_ONLY="true"
