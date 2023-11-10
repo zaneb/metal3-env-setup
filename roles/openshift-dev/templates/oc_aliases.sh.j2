@@ -1,7 +1,15 @@
 alias oc='oc --kubeconfig ~/{{kubeconfig_path}}'
 
 bmo() {
-    oc get pods --namespace openshift-machine-api -o name | sed -n -e 's#^pod/##' -e '/^metal3-[[:xdigit:]]\{7,10\}-/ p'
+    local pods
+    pods="$(oc get pods --namespace openshift-machine-api -o name)"
+    local deployment_name
+    if [[ "${pods}" =~ pod/metal3-baremetal-operator- ]]; then
+        deployment_name="metal3-baremetal-operator"
+    else
+        deployment_name="metal3"
+    fi
+    echo "${pods}" | sed -n -e 's#^pod/##' -e "/^${deployment_name}-[[:xdigit:]]\{7,10\}-/ p"
 }
 
 bmo-log() {
