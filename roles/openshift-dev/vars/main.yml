@@ -3,5 +3,5 @@ config_file:
   ipi: config.sh
   agent: agent-config.sh
 make_target:
-  ipi: ""
+  ipi: "all"
   agent: "agent"
