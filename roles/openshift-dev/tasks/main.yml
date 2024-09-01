@@ -11,3 +11,10 @@
       validate: bash -e %s
       marker: "# {mark} OPENSHIFT ALIAS BLOCK"
       block: "{{ lookup('template', 'oc_aliases.sh.j2') }}"
+- name: Add gatherctl command
+  blockinfile:
+      path: .bashrc
+      validate: bash -e %s
+      marker: "# {mark} GATHERCTL BLOCK"
+      block: "{{ lookup('file', 'gatherctl.sh') }}"
+  when: method == "agent"
