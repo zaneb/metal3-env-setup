@@ -39,6 +39,6 @@
           set +x
           export CI_TOKEN='{{ lookup('file', 'clusterbot-ci_token') }}'
           set -x
-          export CI_SERVER="api.build01.ci.devcluster.openshift.com"
-          export OPENSHIFT_RELEASE_IMAGE="registry.build01.ci.openshift.org/ci-ln-{{clusterbot_build_id}}/release:latest"
+          export CI_SERVER="api.{{clusterbot_build_server_api}}"
+          export OPENSHIFT_RELEASE_IMAGE="registry.{{clusterbot_build_server}}.ci.openshift.org/ci-ln-{{clusterbot_build_id}}/release:latest"
   when: clusterbot_build_id != ""
