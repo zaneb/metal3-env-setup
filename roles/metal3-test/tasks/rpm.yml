@@ -6,7 +6,7 @@
 - name: Autopage repository
   get_url:
       dest: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:zaneb:autopage.repo
-      url: https://copr.fedorainfracloud.org/coprs/zaneb/autopage/repo/epel-8/zaneb-autopage-epel-8.repo
+      url: https://copr.fedorainfracloud.org/coprs/zaneb/autopage/repo/epel-9/zaneb-autopage-epel-9.repo
   become: yes
   register: autopage_repo
 - name: Install bmo-log-parse
