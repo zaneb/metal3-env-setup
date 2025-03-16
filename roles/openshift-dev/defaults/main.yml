@@ -2,5 +2,5 @@ dev_scripts_path: openshift-metal3/dev-scripts
 test_cluster_name: ostest
 clusterbot_build_id: ""
 clusterbot_build_server: build05
-clusterbot_build_server_api: "{{clusterbot_build_server}}.l9oh.p1.openshiftapps.com"
+clusterbot_build_server_api: "{{clusterbot_build_server}}.ci.devcluster.openshift.com"
 method: ipi
